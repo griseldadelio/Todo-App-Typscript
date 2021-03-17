@@ -1,0 +1,34 @@
+{
+    "navbar": {
+        "Search": "Buscar",
+        "Contact": "Contacto"
+    },
+    "main": {
+        "titleTask": "Tabla de Tareas",
+        "titleUser": "Tabla de Usuarios",
+        "btntask": "Nueva Tarea",
+        "btnuser": "Nuevo Usuario"
+    },
+    "form": {
+        "titleFormTask": "Crear Nueva Tarea",
+        "titleFormUser": "Crear Nuevo Usuario",
+        "title": "Titulo",
+        "date": "Fecha",
+        "desc": "Descripción",
+        "assigned": "Responsable",
+        "cancel": "Cancelar",
+        "create": "Crear",
+        "add": "Agregar",
+        "name": "Nombre",
+        "lastName": "Apellido",
+        "email": "Mail",
+        "password": "Contraseña"
+    },
+    "aside": {
+        "add": "Agregar",
+        "list": "Ver",
+        "users": "Usuarios",
+        "task": "Tareas",
+        "setting": "Ajustes"
+    }
+}

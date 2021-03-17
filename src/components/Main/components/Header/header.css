@@ -1,0 +1,30 @@
+.btn-lnk-header{
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    padding-bottom: 8px;
+    font-style: italic;
+    font-family: sans-serif;
+}
+.btn-lnk-header:hover{
+    text-decoration: none;
+    color: black;
+}
+
+.btn-add {
+    background-color:  #727cf5 ;
+    border-color:  #5562f3 ;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border-radius: 10em;
+  }
+  .btn-add:hover {
+    background-color: #5562f3;
+  }
+
+  h2 {
+    color: #6c757d;
+    font-weight: 700;
+    margin-top: 5px;
+    margin-bottom: 4px;
+  }

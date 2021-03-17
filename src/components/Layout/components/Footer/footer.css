@@ -1,0 +1,24 @@
+.footer {
+    font-size: 1em;
+    border-top-left-radius: 3px;
+    font-style: bold;
+
+    animation: moveUp 0.5s ease-in-out;
+    transition: top 0.3s;
+  }
+
+  @keyframes moveUp {
+    from {
+      transform: translateY(1rem); 
+    }
+    to {
+      transform: translateY(0rem); 
+    }
+  }
+
+  .size{
+    font-size: 1.5rem;
+  }
+  a{
+    color: black;
+  }

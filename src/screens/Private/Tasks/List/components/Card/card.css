@@ -1,0 +1,13 @@
+.btn-warning {
+    background-color: #727cf5;
+    border-color: #727cf5;
+  }
+  .border-start-success {
+    border-left: 8px solid #198754 !important;
+  }
+  .border-start-canceled {
+    border-left: 8px solid #dc3545 !important;
+  }
+  .border-start-pending {
+    border-left: 8px solid #727cf5 !important;
+  }

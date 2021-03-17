@@ -1,0 +1,14 @@
+.main {
+    flex-basis: auto;
+    flex-shrink: 1;
+    flex-grow: 1;
+    padding: 40px;
+    background: url(../../assets/img/hero-bg.png) right no-repeat #fafaff;
+    height: max-content;
+  }
+  
+  .backGround{
+    background-image: url(../../assets/img/backGround.jpg);
+    background-size: cover;
+    background-position: center;
+  }

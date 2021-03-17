@@ -1,0 +1,17 @@
+.header{
+    background-color: #ffffff;
+}
+.btn-color {
+    color: black;
+    background-color:none;
+    border-color: none;
+}
+
+.btn-search {
+    background-color: #727cf5 !important;
+    color: white;
+    border-color: #727cf5 !important;
+  }
+  .PersonX{
+ font-size: 1.2rem;
+  }

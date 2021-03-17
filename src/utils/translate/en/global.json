@@ -1,0 +1,34 @@
+{
+    "navbar": {
+        "Search": "Search",
+        "Contact": "Contact"
+    },
+    "main": {
+        "titleTask": "To do Board",
+        "titleUser": "Table Users",
+        "btntask": "New Task",
+        "btnuser": "New User"
+    },
+    "form": {
+        "titleFormTask": "Create New Task",
+        "titleFormUser": "Create New User",
+        "title": "Title",
+        "date": "Date",
+        "desc": "Description",
+        "assigned": "Assigned",
+        "cancel": "Cancel",
+        "create": "Create",
+        "add": "Add",
+        "name": "Name",
+        "lastName": "Last Name",
+        "email": "Email",
+        "password": "Password"
+    },
+    "aside": {
+        "add": "Add",
+        "list": "List",
+        "users": "Users",
+        "task": "Task",
+        "setting": "Settings"
+    }
+}
