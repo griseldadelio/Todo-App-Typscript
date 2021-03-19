@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Main } from "../../../components";
 import { Pentagon, Triangle, Star, Octagon, App, Cloud, ArrowRight } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
@@ -6,7 +6,7 @@ import { Container, Row } from 'react-bootstrap';
 import './home.css';
 
 
-export const Home = () => {
+export const Home: FC = () => {
     return (
         <Main className='mainSize bg'>
             <Container>
@@ -37,10 +37,10 @@ export const Home = () => {
             <div className="animation-effect-3">
                 <Star className="effect-icon text-warning" />
             </div>
-            <div class="animation-effect-4">
+            <div className="animation-effect-4">
                 <Octagon className="effect-icon text-success" />
             </div>
-            <div class="animation-effect-5">
+            <div className="animation-effect-5">
                 <App className=" effect-icon text-info" />
             </div>
             <div className="animation-effect-6">

@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { PencilFill, TrashFill } from 'react-bootstrap-icons';
 
-const TableUsers = ({ name, lastName, email, password }) => {
+type Props = {
+    name: string
+    lastName: string
+    email: string
+    password: string
+}
+const TableUsers: FC<Props> = ({ name, lastName, email, password }) => {
 
     return (
         <tbody>

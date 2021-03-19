@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import { Logo } from "./components";
 import { useTranslation } from "react-i18next";
@@ -6,7 +6,7 @@ import "./aside.css";
 
 import Accordion from 'react-bootstrap/Accordion';
 
-const Aside = () => {
+const Aside: FC = () => {
     const [t] = useTranslation("global");
 
     return (
@@ -57,4 +57,4 @@ const Aside = () => {
     );
 };
 
-export { Aside }; 
+export { Aside };

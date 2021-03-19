@@ -3,13 +3,24 @@ import { firebaseAuth } from '../../utils'
 import { useState, useEffect, useContext } from 'react';
 import { useHistory } from "react-router-dom"
 
+type LoginPayload = {
+    email: string,
+    password: string
+}
+
+type RegisterPayload = {
+    email: string,
+    password: string,
+    fullName: string
+}
+
 const useAuth = () => {
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext)
     const [user, setUser] = useState({})
-    const [authMsgError, setAuthMsgError] = useState(null)
+    const [authMsgError, setAuthMsgError] = useState<string | null>(null)
     const history = useHistory()
 
-    const login = async ({ email, password }) => {
+    const login = async ({ email, password }: LoginPayload) => {
         return await firebaseAuth.auth().signInWithEmailAndPassword(email, password)
             .then(({ user }) => {
                 setUser(user)
@@ -28,7 +39,7 @@ const useAuth = () => {
             })
     }
 
-    const register = async ({ email, password, fullName }) => {
+    const register = async ({ email, password, fullName }: RegisterPayload) => {
         return await firebaseAuth.auth().createUserWithEmailAndPassword(email, password)
             .then(({ user }) => {
                 setUser(user)

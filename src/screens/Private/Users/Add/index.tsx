@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { user } from "../../../../utils";
 import { useTranslation } from "react-i18next";
 import { Layout, Main } from "../../../../components";
@@ -7,11 +7,11 @@ import { useHistory, Link } from 'react-router-dom';
 
 
 
-const AddUsersForm = ({ match }) => {
-    const [name, setName] = useState();
-    const [lastName, setlastName] = useState();
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState();
+const AddUsersForm: FC = ({ match }) => {
+    const [name, setName] = useState('');
+    const [lastName, setlastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const history = useHistory();
     const id = match.params.id;

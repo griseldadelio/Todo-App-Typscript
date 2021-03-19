@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Layout, Main } from "../../../../components";
 import { TableUsers } from "./components";
@@ -6,7 +6,7 @@ import { Table, Container } from 'react-bootstrap';
 import { user } from '../../../../utils';
 
 
-const User = () => {
+const User: FC = () => {
     const [t] = useTranslation("global");
     const [users, setUsers] = useState([]);
 

@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Tasks } from './Tasks';
 import { Users } from './Users';
 import { Home } from './Home';
 
-export const Private = () => {
+export const Private: FC = () => {
     return (
         <Router>
             <Switch>

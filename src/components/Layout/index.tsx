@@ -3,9 +3,9 @@ import { Header, Footer, Aside } from "./components";
 import "./layout.css";
 
 interface Props {
-    hideHeader: boolean
-    hideAside: boolean
-    hideFooter: boolean
+    hideHeader?: boolean
+    hideAside?: boolean
+    hideFooter?: boolean
 }
 
 const Layout: FC<Props> = ({ children, hideHeader = false, hideAside = false, hideFooter = false }) => {

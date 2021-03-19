@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { Layout, Main } from "../../../components";
 import Logo from "../../../assets/img/logo-fucsia-ada.png";
 import { Row, Card, Form, InputGroup, Button } from "react-bootstrap";
 import { useAuth } from '../../../hooks';
 import { Link } from "react-router-dom";
 
-const SingIn = () => {
-    const [fullName, setFullName] = useState()
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
+const SingIn: FC = () => {
+    const [fullName, setFullName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
 
     const { register } = useAuth()
 

@@ -3,14 +3,14 @@ import { Header } from "./components";
 import "./styles.css";
 
 interface Props {
-    showButton: boolean
-    title: string
-    txt: string
-    link: string
-    className: string
+    showButton?: boolean
+    title?: string
+    txt?: string
+    link?: string
+    className?: string
 }
 
-const Main: FC<Props> = ({ children, showButton, title, txt, link, className }) => {
+const Main: FC<Props> = ({ children, showButton = false, title, txt, link, className }) => {
     return (
         <>
             <main className={className}>

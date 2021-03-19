@@ -1,13 +1,23 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import "./card.css";
 import { task } from '../../../../../../utils'
 import { Col, Row, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { PencilFill } from "react-bootstrap-icons";
 
-const CardTask = ({ title, description, assigned, date, status, id }) => {
+interface Props {
+    title: string
+    description: string
+    date: string
+    status: string
+    id: string
+    assigned: string
+    handleOnClick: () => void
+}
+
+const CardTask: FC<Props> = ({ title, description, assigned, date, status, id }) => {
     const [taskStatus, setTaskStatus] = useState(status);
-    const handleOnClick = (status) => {
+    const handleOnClick = (status: string) => {
         setTaskStatus(status);
         task.patch(id, { status })
     }

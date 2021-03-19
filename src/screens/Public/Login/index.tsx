@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FC, useState } from "react";
 import { Layout, Main } from "../../../components";
 import { Link } from 'react-router-dom'
 import Logo from "../../../assets/img/logo-fucsia-ada.png";
@@ -6,13 +6,14 @@ import { Row, Card, Form, InputGroup, Button, Col } from "react-bootstrap";
 import "./login.css";
 import { useAuth } from '../../../hooks';
 
-const Login = () => {
-    const [email, setEmail] = useState()
-    const [password, setPassword] = useState()
+
+const Login: FC = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const { login, authMsgError } = useAuth()
 
 
-    const handleOnSubmit = (e) => {
+    const handleOnSubmit = (e: { preventDefault: () => void; }) => {
         e.preventDefault();
         login({ email, password })
             .then(
