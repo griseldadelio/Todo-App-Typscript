@@ -1,6 +1,6 @@
 import React, { FC, useState } from "react";
 import "./card.css";
-import { task } from '../../../../../../utils'
+//import { task } from '../../../../../../utils'
 import { Col, Row, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { PencilFill } from "react-bootstrap-icons";
@@ -12,14 +12,15 @@ interface Props {
     status: string
     id: string
     assigned: string
-    handleOnClick: () => void
+    className: string
+    style: {}
 }
 
-const CardTask: FC<Props> = ({ title, description, assigned, date, status, id }) => {
+const CardTask: FC<Props> = ({ title, description, assigned, date, status, id, className, style }) => {
     const [taskStatus, setTaskStatus] = useState(status);
     const handleOnClick = (status: string) => {
         setTaskStatus(status);
-        task.patch(id, { status })
+        //task.patch(id, { status })
     }
     const getCardColor = () => {
         switch (taskStatus) {
@@ -33,7 +34,7 @@ const CardTask: FC<Props> = ({ title, description, assigned, date, status, id })
     };
 
     return (
-        <div className={`card text-dark  ${getCardColor()} ${taskStatus}  shadow-sm`}>
+        <div className={`card text-dark  ${getCardColor()} ${taskStatus} ${className} shadow-sm`} style={style}>
             <div className="card-body">
                 <Row>
                     <Col>

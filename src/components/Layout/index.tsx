@@ -13,12 +13,12 @@ const Layout: FC<Props> = ({ children, hideHeader = false, hideAside = false, hi
 
     return (
         <div className="layout">
-            {hideAside && <Aside />}
+            {!hideAside && <Aside />}
 
             <div className="contenedor">
-                {hideHeader && <Header />}
+                {!hideHeader && <Header />}
                 {children}
-                {hideFooter && <Footer />}
+                {!hideFooter && <Footer />}
             </div>
         </div>
     );

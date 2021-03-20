@@ -9,7 +9,15 @@ const get = async () => {
     return objectToArray(data.data);
 }
 
-const post = async (user) => {
+type AddUserPayLoad = {
+    name: string
+    lastName: string
+    email: string
+    password: string
+}
+type UpdateUserPayLoad = AddUserPayLoad & { id: string }
+
+const post = async (user: AddUserPayLoad) => {
     await api({
         method: 'post',
         url: '/users.json',
@@ -18,7 +26,7 @@ const post = async (user) => {
 
 }
 
-const getId = async (id) => {
+const getId = async (id: string) => {
     const data = await api({
         method: 'get',
         url: '/users/' + id + '.json'
@@ -26,15 +34,15 @@ const getId = async (id) => {
     return data.data;
 }
 
-const patch = async (id, user) => {
+const patch = async (user: UpdateUserPayLoad) => {
     await api({
         method: 'PATCH',
-        url: '/users/' + id + '.json',
+        url: '/users/' + user.id + '.json',
         data: user
     })
 }
 
-const deleteUser = async (id) => {
+const deleteUser = async (id: string) => {
     await api({
         method: 'DELETE',
         url: '/users/' + id + '.json'

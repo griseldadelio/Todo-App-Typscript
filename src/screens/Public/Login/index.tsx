@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, FormEvent, useState } from "react";
 import { Layout, Main } from "../../../components";
 import { Link } from 'react-router-dom'
 import Logo from "../../../assets/img/logo-fucsia-ada.png";
@@ -13,13 +13,13 @@ const Login: FC = () => {
     const { login, authMsgError } = useAuth()
 
 
-    const handleOnSubmit = (e: { preventDefault: () => void; }) => {
+    const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         login({ email, password })
-            .then(
-                setEmail(''),
+            .then(() => {
+                setEmail('')
                 setPassword('')
-            )
+            })
     };
 
     return (
@@ -45,9 +45,9 @@ const Login: FC = () => {
                                         <Form.Group>
                                             <Form.Label>Email</Form.Label>
                                             <Form.Control
+                                                required
                                                 type="email"
                                                 id="emai"
-                                                required=""
                                                 placeholder="Enter your email"
                                                 value={email} onChange={(e) => setEmail(e.target.value)}
                                             />

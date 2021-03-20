@@ -1,13 +1,13 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, FormEvent, useState, useEffect } from "react";
 import { user } from "../../../../utils";
 import { useTranslation } from "react-i18next";
 import { Layout, Main } from "../../../../components";
 import { Form, Button } from 'react-bootstrap';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory, Link, RouteComponentProps } from 'react-router-dom';
 
 
 
-const AddUsersForm: FC = ({ match }) => {
+const AddUsersForm: FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
     const [name, setName] = useState('');
     const [lastName, setlastName] = useState('');
     const [email, setEmail] = useState('');
@@ -25,12 +25,12 @@ const AddUsersForm: FC = ({ match }) => {
     }
 
     const updateUser = async () => {
-        await user.patch(id, { name, lastName, email, password })
+        await user.patch({ id, name, lastName, email, password })
         history.push('/users/');
     }
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
         if (id) {
             await updateUser();
         } else {
@@ -38,9 +38,9 @@ const AddUsersForm: FC = ({ match }) => {
         }
     }
 
-    useEffect(async () => {
+    useEffect(() => {
         if (id) {
-            await user.getId(id)
+            user.getId(id)
                 .then(response => {
                     setName(response.name);
                     setlastName(response.lastname);

@@ -10,9 +10,9 @@ const User: FC = () => {
     const [t] = useTranslation("global");
     const [users, setUsers] = useState([]);
 
-    useEffect(async () => {
-        setUsers(await user.get());
-    }, []);
+    // useEffect(() => {
+    //     setUsers(user.get());
+    // }, []);
 
     return (
         <Layout>

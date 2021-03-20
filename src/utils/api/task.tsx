@@ -9,7 +9,15 @@ const get = async () => {
     return objectToArray(data.data);
 }
 
-const post = async (task) => {
+type AddTaskPayLoad = {
+    title: string
+    date: string
+    assigned: string
+    description: string
+}
+type UpdateTaskPayLoad = AddTaskPayLoad & { id: string }
+
+const post = async (task: AddTaskPayLoad) => {
     const data = await api({
         method: 'post',
         url: '/tareas.json',
@@ -18,7 +26,7 @@ const post = async (task) => {
     console.log('estoy aca' + data)
 }
 
-const getId = async (id) => {
+const getId = async (id: string) => {
     const data = await api({
         method: 'get',
         url: '/tareas/' + id + '.json'
@@ -26,10 +34,10 @@ const getId = async (id) => {
     return data.data;
 }
 
-const patch = async (id, task) => {
+const patch = async (task: UpdateTaskPayLoad) => {
     await api({
         method: 'PATCH',
-        url: '/tareas/' + id + '.json',
+        url: '/tareas/' + task.id + '.json',
         data: task
     })
 }

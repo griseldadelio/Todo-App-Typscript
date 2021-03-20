@@ -1,12 +1,12 @@
-import React, { FC, useState, useEffect } from "react";
-import { useHistory, Link } from 'react-router-dom';
+import React, { FC, FormEvent, useState, useEffect } from "react";
+import { useHistory, Link, RouteComponentProps } from 'react-router-dom';
 import { task } from "../../../../utils";
 import { useTranslation } from "react-i18next";
 import { Layout, Main } from "../../../../components";
 import { Form, Button } from 'react-bootstrap';
 
 
-const Add: FC = ({ match }) => {
+const Add: FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
     const [title, setTitle] = useState('');
     const [date, setDate] = useState('');
     const [description, setDescription] = useState('');
@@ -26,13 +26,13 @@ const Add: FC = ({ match }) => {
 
     const updateTask = () => {
         setIsLoading(true);
-        task.patch(id, { title, date, assigned, description })
+        task.patch({ id, title, date, assigned, description })
         setIsLoading(false);
         setMsj("Se Actualizo de forma exitosa");
         history.push('/tasks/');
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (id) {
             updateTask();

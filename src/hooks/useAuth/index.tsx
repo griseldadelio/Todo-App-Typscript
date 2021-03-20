@@ -16,18 +16,19 @@ type RegisterPayload = {
 
 const useAuth = () => {
     const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext)
-    const [user, setUser] = useState({})
+    const [user, setUser] = useState<firebaseAuth.User | null>(null)
     const [authMsgError, setAuthMsgError] = useState<string | null>(null)
     const history = useHistory()
 
     const login = async ({ email, password }: LoginPayload) => {
         return await firebaseAuth.auth().signInWithEmailAndPassword(email, password)
-            .then(({ user }) => {
-                setUser(user)
-                setIsAuthenticated(true)
-                localStorage.setItem('userToken', user.refreshToken)
-                history.go(0)
-            }).catch(e => {
+            // .then(({ user }) => {
+            //     setUser(user)
+            //     setIsAuthenticated(true)
+            //     localStorage.setItem('userToken', user.refreshToken)
+            //     history.go(0)
+            // })
+            .catch(e => {
                 switch (e.code) {
                     case "auth/invalid-email": setAuthMsgError('Formato de email incorrecto')
                         break
@@ -43,8 +44,9 @@ const useAuth = () => {
         return await firebaseAuth.auth().createUserWithEmailAndPassword(email, password)
             .then(({ user }) => {
                 setUser(user)
-                user.updateProfile({ displayName: fullName })
-            }).catch(e => {
+                user!.updateProfile({ displayName: fullName })
+            })
+            .catch(e => {
                 switch (e.code) {
                     case "auth/invalid-email": setAuthMsgError('Formato de email incorrecto')
                         break
@@ -68,7 +70,7 @@ const useAuth = () => {
         firebaseAuth.auth().onAuthStateChanged((user) => {
             console.log(user)
             const token = localStorage.getItem('userToken');
-            if (token && token === user.refreshToken)
+            if (token && token === user!.refreshToken)
                 setIsAuthenticated(true)
         })
     }, [isAuthenticated]);

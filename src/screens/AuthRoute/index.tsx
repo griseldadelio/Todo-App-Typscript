@@ -8,8 +8,8 @@ const AuthRoute = () => {
 
     return (
         <div>
-            { isAuthenticated ? <Private /> : <Public />}
-            <Public />
+            {/* { isAuthenticated ? <Private /> : <Public />} */}
+            <Private />
         </div>
     );
 }

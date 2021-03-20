@@ -19,7 +19,7 @@ const Aside: FC = () => {
                             <i className="bi bi-person"></i> {t("aside.users")}
                         </button>
                     </div>
-                    <Accordion.Collapse id="collapseUsers" aria-labelledby="headingUsers" data-bs-parent="#accordionMenu">
+                    <Accordion.Collapse eventKey="" id="collapseUsers" aria-labelledby="headingUsers" data-bs-parent="#accordionMenu">
                         <div className="accordion-body">
                             <Link to="/users">{t("aside.list")}</Link>
                             <Link to="/users/add">{t("aside.add")}</Link>
@@ -32,7 +32,7 @@ const Aside: FC = () => {
                             <i className="bi bi-card-list"></i> {t("aside.task")}
                         </button>
                     </div>
-                    <Accordion.Collapse id="collapseTasks" aria-labelledby="headingTasks" data-bs-parent="#accordionMenu">
+                    <Accordion.Collapse eventKey="" id="collapseTasks" aria-labelledby="headingTasks" data-bs-parent="#accordionMenu">
                         <div className="accordion-body">
                             <Link to="/tasks">{t("aside.list")}</Link>
                             <Link to="/tasks/add">{t("aside.add")}</Link>
@@ -45,7 +45,7 @@ const Aside: FC = () => {
                             <i className="bi bi-sliders"></i> {t("aside.setting")}
                         </button>
                     </div>
-                    <Accordion.Collapse id="collapseSettings" aria-labelledby="headingSettings" >
+                    <Accordion.Collapse eventKey="" id="collapseSettings" aria-labelledby="headingSettings" >
                         <div className="accordion-body">
                             <Link to="/">General</Link>
                             <Link to="/">Multimedia</Link>

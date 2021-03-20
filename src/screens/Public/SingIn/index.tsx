@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, FormEvent, useState } from "react";
 import { Layout, Main } from "../../../components";
 import Logo from "../../../assets/img/logo-fucsia-ada.png";
 import { Row, Card, Form, InputGroup, Button } from "react-bootstrap";
@@ -13,14 +13,14 @@ const SingIn: FC = () => {
     const { register } = useAuth()
 
 
-    const handleOnSubmit = (e) => {
+    const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         register({ fullName, email, password })
-            .then(
-                setFullName(''),
-                setEmail(''),
+            .then(() => {
+                setFullName('')
+                setEmail('')
                 setPassword('')
-            )
+            })
     };
 
     return (
@@ -48,7 +48,7 @@ const SingIn: FC = () => {
                                             <Form.Control
                                                 type="text"
                                                 id="fullName"
-                                                required=""
+                                                required
                                                 placeholder="Enter your name and lastname"
                                                 value={fullName} onChange={(e) => setFullName(e.target.value)}
                                             />
@@ -58,7 +58,7 @@ const SingIn: FC = () => {
                                             <Form.Control
                                                 type="email"
                                                 id="email"
-                                                required=""
+                                                required
                                                 placeholder="Enter your email"
                                                 value={email} onChange={(e) => setEmail(e.target.value)}
                                             />
