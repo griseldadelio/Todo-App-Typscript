@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Link } from "react-router-dom";
 import { Container, Col, Row, Button } from 'react-bootstrap';
 import './header.css'

@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useState } from "react";
+import { FC, FormEvent, useState } from "react";
 import { Layout, Main } from "../../../components";
 import { Link } from 'react-router-dom'
 import Logo from "../../../assets/img/logo-fucsia-ada.png";
@@ -15,7 +15,7 @@ const Login: FC = () => {
 
     const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        login({ email, password })
+        login(email, password)
             .then(() => {
                 setEmail('')
                 setPassword('')

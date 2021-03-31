@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import LogoFucsia from "../../../../../../assets/img/logo-fucsia-ada.png";
 
 const Logo: FC = () => {

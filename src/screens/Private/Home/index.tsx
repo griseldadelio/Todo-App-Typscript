@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Main } from "../../../components";
 import { Pentagon, Triangle, Star, Octagon, App, Cloud, ArrowRight } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';

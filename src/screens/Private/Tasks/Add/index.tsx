@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useState, useEffect } from "react";
+import { FC, FormEvent, useState, useEffect } from "react";
 import { useHistory, Link, RouteComponentProps } from 'react-router-dom';
 import { task } from "../../../../utils";
 import { useTranslation } from "react-i18next";
@@ -14,11 +14,11 @@ const Add: FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [msj, setMsj] = useState('');
     const history = useHistory();
-    const id = match.params.id;
+    const { id } = match.params;
     const [t] = useTranslation("global");
 
     const createTask = async () => {
-        await task.post({ title, date, assigned, description });
+        await task.post({ title, date, assigned, description, status: 'pending' });
         alert('Tu tarea se cargo exitosamente');
         history.push('/tasks/')
     }
@@ -26,7 +26,7 @@ const Add: FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
 
     const updateTask = () => {
         setIsLoading(true);
-        task.patch({ id, title, date, assigned, description })
+        task.patch(id, { title, date, assigned, description })
         setIsLoading(false);
         setMsj("Se Actualizo de forma exitosa");
         history.push('/tasks/');
@@ -51,7 +51,7 @@ const Add: FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
                     setDescription(response.description)
                 })
         }
-    }, [])
+    }, [id])
 
 
     return (

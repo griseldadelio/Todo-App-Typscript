@@ -1,21 +1,7 @@
 import { api } from './api';
 import { objectToArray } from '../../helpers';
 
-const get = async () => {
-    const data = await api({
-        method: 'get',
-        url: '/users.json'
-    });
-    return objectToArray(data.data);
-}
-
-type AddUserPayLoad = {
-    name: string
-    lastName: string
-    email: string
-    password: string
-}
-type UpdateUserPayLoad = AddUserPayLoad & { id: string }
+type AddUserPayLoad = { name: string, lastName: string, email: string, password: string }
 
 const post = async (user: AddUserPayLoad) => {
     await api({
@@ -34,10 +20,20 @@ const getId = async (id: string) => {
     return data.data;
 }
 
-const patch = async (user: UpdateUserPayLoad) => {
+const get = async () => {
+    const data = await api({
+        method: 'get',
+        url: '/users.json'
+    });
+    return objectToArray(data.data);
+}
+
+type UpdateUserPayLoad = AddUserPayLoad
+
+const patch = async (id: string, user: UpdateUserPayLoad) => {
     await api({
         method: 'PATCH',
-        url: '/users/' + user.id + '.json',
+        url: '/users/' + id + '.json',
         data: user
     })
 }

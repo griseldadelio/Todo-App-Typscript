@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useState } from "react";
+import { FC, FormEvent, useState } from "react";
 import { Layout, Main } from "../../../components";
 import Logo from "../../../assets/img/logo-fucsia-ada.png";
 import { Row, Card, Form, InputGroup, Button } from "react-bootstrap";
@@ -15,7 +15,7 @@ const SingIn: FC = () => {
 
     const handleOnSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        register({ fullName, email, password })
+        register(fullName, email, password)
             .then(() => {
                 setFullName('')
                 setEmail('')

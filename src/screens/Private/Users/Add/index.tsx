@@ -1,4 +1,4 @@
-import React, { FC, FormEvent, useState, useEffect } from "react";
+import { FC, FormEvent, useState, useEffect } from "react";
 import { user } from "../../../../utils";
 import { useTranslation } from "react-i18next";
 import { Layout, Main } from "../../../../components";
@@ -13,6 +13,8 @@ const AddUsersForm: FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [msj, setMsj] = useState('');
     const history = useHistory();
     const id = match.params.id;
 
@@ -24,17 +26,20 @@ const AddUsersForm: FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
         setPassword('');
     }
 
-    const updateUser = async () => {
-        await user.patch({ id, name, lastName, email, password })
+    const updateUser = () => {
+        setIsLoading(true);
+        user.patch(id, { name, lastName, email, password })
+        setIsLoading(false);
+        setMsj("Se Actualizo de forma exitosa");
         history.push('/users/');
     }
 
-    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: FormEvent<HTMLElement>) => {
         e.preventDefault();
         if (id) {
-            await updateUser();
+            updateUser();
         } else {
-            await createUser();
+            createUser();
         }
     }
 
@@ -48,13 +53,16 @@ const AddUsersForm: FC<RouteComponentProps<{ id: string }>> = ({ match }) => {
                     setPassword(response.password)
                 })
         }
-    }, [])
+    }, [id])
+
     const [t] = useTranslation("global");
 
     return (
         <Layout>
             <Main title={t("form.titleFormUser")} className={"bg-light main"}>
                 <Form onSubmit={handleSubmit}>
+                    {isLoading && "Cargando .........."}
+                    {msj}
                     <Form.Group className="col-6">
                         <Form.Label className="mb-2">{t("form.name")}</Form.Label>
                         <input className="form-control form-control-light mb-3" type="text" name="name" value={name} onChange={(e) => setName(e.target.value)} />

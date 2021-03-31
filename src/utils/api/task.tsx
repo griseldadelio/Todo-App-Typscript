@@ -1,29 +1,16 @@
 import { api } from './api';
 import { objectToArray } from '../../helpers';
+import { TaskType } from '../../types'
 
-const get = async () => {
-    const data = await api({
-        method: 'get',
-        url: '/tareas.json'
-    });
-    return objectToArray(data.data);
-}
+type AddTaskPayLoad = Omit<TaskType, 'id'>;
 
-type AddTaskPayLoad = {
-    title: string
-    date: string
-    assigned: string
-    description: string
-}
-type UpdateTaskPayLoad = AddTaskPayLoad & { id: string }
 
 const post = async (task: AddTaskPayLoad) => {
-    const data = await api({
+    await api({
         method: 'post',
         url: '/tareas.json',
         data: task
     });
-    console.log('estoy aca' + data)
 }
 
 const getId = async (id: string) => {
@@ -34,13 +21,28 @@ const getId = async (id: string) => {
     return data.data;
 }
 
-const patch = async (task: UpdateTaskPayLoad) => {
+// type Tasks = {
+//     [id: string]: TaskType[];
+// }
+
+const get = async () => {
+    const data = await api({
+        method: 'get',
+        url: '/tareas.json'
+    });
+    const response = objectToArray(data.data);
+    return response;
+}
+
+type UpdateTaskPayLoad = Omit<TaskType, 'status' | 'id'> | Pick<TaskType, 'status'>
+//omit saco los datos que no necesito y el pick me deja solo el dato que deseo
+
+const patch = async (id: string, task: UpdateTaskPayLoad) => {
     await api({
         method: 'PATCH',
-        url: '/tareas/' + task.id + '.json',
+        url: '/tareas/' + id + '.json',
         data: task
     })
 }
-
 
 export const task = { post, get, patch, getId };

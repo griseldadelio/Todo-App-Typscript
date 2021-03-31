@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { Header, Footer, Aside } from "./components";
 import "./layout.css";
 
@@ -9,12 +9,9 @@ interface Props {
 }
 
 const Layout: FC<Props> = ({ children, hideHeader = false, hideAside = false, hideFooter = false }) => {
-
-
     return (
         <div className="layout">
             {!hideAside && <Aside />}
-
             <div className="contenedor">
                 {!hideHeader && <Header />}
                 {children}

@@ -1,26 +1,23 @@
-import React, { FC, useState } from "react";
+import { FC, useState } from "react";
 import "./card.css";
-//import { task } from '../../../../../../utils'
+import { task } from '../../../../../../utils'
 import { Col, Row, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { PencilFill } from "react-bootstrap-icons";
+import { TasksType } from '../../../types'
 
 interface Props {
-    title: string
-    description: string
-    date: string
-    status: string
-    id: string
-    assigned: string
+    data: TasksType
     className: string
     style: {}
 }
 
-const CardTask: FC<Props> = ({ title, description, assigned, date, status, id, className, style }) => {
+const CardTask: FC<Props> = ({ data, className, style }) => {
+    const { title, date, assigned, description, status, id } = data
     const [taskStatus, setTaskStatus] = useState(status);
     const handleOnClick = (status: string) => {
         setTaskStatus(status);
-        //task.patch(id, { status })
+        task.patch(id, { status })
     }
     const getCardColor = () => {
         switch (taskStatus) {

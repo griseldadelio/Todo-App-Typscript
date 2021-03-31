@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { Public, Private } from '..'
 import { AuthContext } from '../../contexts/AuthProvider';
 
@@ -8,8 +8,7 @@ const AuthRoute = () => {
 
     return (
         <div>
-            {/* { isAuthenticated ? <Private /> : <Public />} */}
-            <Private />
+            { isAuthenticated ? <Private /> : <Public />}
         </div>
     );
 }

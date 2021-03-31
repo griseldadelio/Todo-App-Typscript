@@ -1,34 +1,18 @@
 import { AuthContext } from "../../contexts/AuthProvider"
 import { firebaseAuth } from '../../utils'
-import { useState, useEffect, useContext } from 'react';
-import { useHistory } from "react-router-dom"
-
-type LoginPayload = {
-    email: string,
-    password: string
-}
-
-type RegisterPayload = {
-    email: string,
-    password: string,
-    fullName: string
-}
+import { useState, useContext } from 'react';
 
 const useAuth = () => {
-    const { isAuthenticated, setIsAuthenticated } = useContext(AuthContext)
-    const [user, setUser] = useState<firebaseAuth.User | null>(null)
-    const [authMsgError, setAuthMsgError] = useState<string | null>(null)
-    const history = useHistory()
+    const [authMsgError, setAuthMsgError] = useState<string | null>(null);
+    const { setIsAuthenticated, setUser } = useContext(AuthContext);
 
-    const login = async ({ email, password }: LoginPayload) => {
+    const login = async (email: string, password: string) => {
         return await firebaseAuth.auth().signInWithEmailAndPassword(email, password)
-            // .then(({ user }) => {
-            //     setUser(user)
-            //     setIsAuthenticated(true)
-            //     localStorage.setItem('userToken', user.refreshToken)
-            //     history.go(0)
-            // })
-            .catch(e => {
+            .then((response: firebaseAuth.auth.UserCredential) => {
+                setUser(response.user)
+                setIsAuthenticated(true)
+                if (response.user) localStorage.setItem('userToken', response.user.refreshToken)
+            }).catch(e => {
                 switch (e.code) {
                     case "auth/invalid-email": setAuthMsgError('Formato de email incorrecto')
                         break
@@ -40,11 +24,11 @@ const useAuth = () => {
             })
     }
 
-    const register = async ({ email, password, fullName }: RegisterPayload) => {
+    const register = async (email: string, password: string, fullName: string) => {
         return await firebaseAuth.auth().createUserWithEmailAndPassword(email, password)
-            .then(({ user }) => {
-                setUser(user)
-                user!.updateProfile({ displayName: fullName })
+            .then((response: firebaseAuth.auth.UserCredential) => {
+                setUser(response.user);
+                response?.user?.updateProfile({ displayName: fullName });
             })
             .catch(e => {
                 switch (e.code) {
@@ -60,21 +44,13 @@ const useAuth = () => {
         firebaseAuth.auth().signOut()
             .then(() => {
                 alert('Te has deslogueado exitosamente')
-                history.push('/')
+                localStorage.removeItem("userToken");
+                setIsAuthenticated(false);
             }).catch((error) => {
                 console.log(error)
             })
     }
 
-    useEffect(() => {
-        firebaseAuth.auth().onAuthStateChanged((user) => {
-            console.log(user)
-            const token = localStorage.getItem('userToken');
-            if (token && token === user!.refreshToken)
-                setIsAuthenticated(true)
-        })
-    }, [isAuthenticated]);
-
-    return { login, register, logout, user, isAuthenticated, authMsgError }
+    return { login, register, logout, authMsgError }
 }
 export { useAuth }
